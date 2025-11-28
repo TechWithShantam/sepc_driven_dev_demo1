@@ -25,6 +25,7 @@ sim
 ## Output format
 - When asked to scaffold the app, create the following files: `app.py`, `requirements.txt`, `README.md`, `tests/test_app.py`, `.github/workflows/ci.yml`, and `ASSUMPTIONS.md`.
 - For any ambiguous requirement, ask one clarifying question. If cloning is not possible, assume default behaviors documented in ASSUMPTIONS.md.
+- add a architecture.md file and write what all changes we have done and also create a full flow chart of the application in it.
 
 ## Guidelines
 - Use Copilot to assist with code generation, refactoring, and documentation.
