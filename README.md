@@ -1,7 +1,7 @@
 # Spec Driven App1 
 This Demo is part of my talk on "Declarative to Deployment: Production-Grade GenAI Applications via Specs and AI" 
 
-## DONT 
+## DONT ( this is for Copilot )
 
 DO not update my README.md 
 
