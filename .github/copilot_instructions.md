@@ -7,7 +7,7 @@ This repo contains a simple web app that allows a user to upload an Excel file (
 Before generating any code, read files under /specs/ and treat them as canonical requirements.
 
 ## Project preferences & rules
-- Tech stack: back end : Python, pandas, openpyxl , front-end : HTML , Javascript , and CSS.
+- Tech stack: back end : Python, pandas, openpyxl , front-end : streamlit 
 - Use simple, readable code and include docstrings for public functions.
 - Add a minimal test under /tests/ using pytest.
 - Add requirements.txt with explicit packages.

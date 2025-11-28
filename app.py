@@ -1,45 +1,28 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
-from fastapi.responses import HTMLResponse, StreamingResponse
+
+import streamlit as st
 import pandas as pd
-import io
+import openpyxl
 
-app = FastAPI()
+st.set_page_config(page_title="Spec-driven app 1", layout="wide")
+st.title("Spec-driven app 1")
+st.caption("helping engineers code faster and Declarative to Deployment")
 
+uploaded_file = st.file_uploader("Upload an Excel file (.xls, .xlsx)", type=["xls", "xlsx"])
 
-@app.get("/", response_class=HTMLResponse)
-def index():
-    with open("static/index.html") as f:
-        return f.read()
-
-
-@app.post("/upload")
-def upload_excel(file: UploadFile = File(...)):
-    if not file.filename.endswith((".xls", ".xlsx")):
-        raise HTTPException(status_code=400, detail="Invalid file type.")
+if uploaded_file:
     try:
-        df = pd.read_excel(file.file, sheet_name=0)
+        df = pd.read_excel(uploaded_file, sheet_name=0)
         if df.empty:
-            return {"error": "No data found"}
-        preview = df.head(1000)
-        warning = "Preview limited to 1000 rows" if len(df) > 1000 else ""
-        return {
-            "columns": preview.columns.tolist(),
-            "rows": preview.values.tolist(),
-            "warning": warning
-        }
+            st.warning("No data found in the uploaded file.")
+        else:
+            preview = df.head(1000)
+            st.write("Preview (max 1000 rows):")
+            st.dataframe(preview)
+            if len(df) > 1000:
+                st.warning("Preview limited to 1000 rows.")
+            csv = preview.to_csv(index=False).encode('utf-8')
+            st.download_button("Download as CSV", csv, "preview.csv", "text/csv")
     except Exception as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-
-@app.get("/download")
-def download_csv():
-    # For demo, return a sample CSV
-    df = pd.DataFrame({"A": [1, 2], "B": [3, 4]})
-    stream = io.StringIO()
-    df.to_csv(stream, index=False)
-    response = StreamingResponse(
-        iter([stream.getvalue()]),
-        media_type="text/csv"
-    )
-    response.headers["Content-Disposition"] = "attachment; filename=sample.csv"
-    return response
+        st.error(f"Error reading file: {e}")
+else:
+    st.info("Please upload an Excel file to begin.")
