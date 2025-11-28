@@ -3,10 +3,9 @@ This Demo is part of my talk on "Declarative to Deployment: Production-Grade Gen
 
 ## DONT 
 
-DO not update my readme.md 
+DO not update my README.md 
 
-## user prompt 1 :
-
+## User Prompt 1 :
 
 Copilot: 
 Read workspace instructions .github/copilot_instructions.md + specs.specs/projectSpecs.md  file. 
