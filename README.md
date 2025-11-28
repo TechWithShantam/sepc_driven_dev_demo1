@@ -5,7 +5,7 @@ This Demo is part of my talk on "Declarative to Deployment: Production-Grade Gen
 
 DO not update my README.md 
 
-## User Prompt 1 :
+## User Prompt :
 
 Copilot: 
 Read workspace instructions .github/copilot_instructions.md + specs.specs/projectSpecs.md  file. 
